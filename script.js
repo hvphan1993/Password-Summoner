@@ -1,10 +1,10 @@
 // Assignment code here
 
 //create arrays that include uppercase, lowercase, special characters, and numbers
-var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numeric = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var specialChar = ["\~", "\`", "\!", "\@", "\#", "\$", "\%", "\^", "\&", "\*", "\(", "\)", "\_", "\-", "\+", "\=", "\{", "\[", "\}", "\]", "\|", "\:", "\'", "\<", "\>", "\,", "\.", "\?", "\/"];
+var lowerCaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var upperCaseArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var numericArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var specialCharArray = ["\~", "\`", "\!", "\@", "\#", "\$", "\%", "\^", "\&", "\*", "\(", "\)", "\_", "\-", "\+", "\=", "\{", "\[", "\}", "\]", "\|", "\:", "\'", "\<", "\>", "\,", "\.", "\?", "\/"];
 // create function that on button click we are prompted with our first question
 
 
@@ -52,43 +52,44 @@ function writePassword() {
   //prompt 1
   var characterLength = promptLength();
 
-    //prompt 2 teacher has confirm boxes to T/F the variables of lowercase, upper, special, and numerics- after confirm or cancel it generates password
+  //prompts have confirm boxes to T/F the variables of lowercase, upper, special, and numerics- after confirm or cancel it generates password
   
   var lowerCase = lowerCaseConfirm();
   var upperCase = upperCaseConfirm();
   var numeric = numericConfirm();
   var specialChar = specialCharConfirm();
 
-    //we want all answers here. length + what characters to use
+  //we want all answers here. length + what characters to use
 
 
-  var password = generatePassword(characterLength);
+  var password = generatePassword(characterLength, lowerCase, upperCase, numeric, specialChar);
   var passwordText = document.querySelector("#password");
-  
-  passwordText.value = password;
-  
+  if (password != undefined) {  
+    passwordText.value = password;
+  }
+        
 }
 
-function generatePassword(characterLength) {
+function generatePassword(characterLength, lowerCase, upperCase, numeric, specialChar) {
   var password = "";
 
   var combo = [];   
-    if (lowerCaseConfirm) {
-      combo += lowerCase;
-    }
-    if (upperCaseConfirm) {
-      combo += upperCase;
-    }
-    if (numericConfirm) {
-      combo += numeric;
-    }
-    if (specialCharConfirm) {
-      combo += specialChar;
-    }
-    if (combo.length == 0) {
-      window.alert("Invalid input! Please select at least one character type.");
-      return ;
-    }
+  if (lowerCase) {
+    combo.push.apply(combo, lowerCaseArray);
+  }
+  if (upperCase) {
+    combo.push.apply(combo, upperCaseArray);
+  }
+  if (numeric) {
+    combo.push.apply(combo, numericArray);
+  }
+  if (specialChar) {
+    combo.push.apply(combo, specialCharArray);
+  }
+  if (combo.length == 0) {
+    window.alert("Invalid input! Please select at least one character type.");
+    return ;
+  }
 
   for (i = 0; i < characterLength; i++) {
     var char = Math.floor(Math.random() * combo.length);
