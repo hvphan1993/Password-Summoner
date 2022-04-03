@@ -7,12 +7,12 @@ In this challenge I was tasked with giving the 'Generate Password' button the ab
 
 ## Process of Creating Prompts for Character Length and Character Type
 
-To start off this challenge I needed to connect the button to a starting prompt that would ask the user how many characters they would like their new password to be. I had to set a range of no less than 8 and no more than 128 per the challenge guidelines. To do this, I set up a function of promptLength that would run once to trigger the window prompt and then again when the user plugged in their values. A while loop was used here to make sure the inputted values stayed within the acceptible range and if they were not then a new message would alert the user to try again with an acceptible value. 
+To start off this challenge I needed to connect the button to a starting prompt that would ask the user how many characters they would like their new password to be. I had to set a range of no less than 8 and no more than 128 per the challenge guidelines. To do this, I set up a function of promptLength that would run once to trigger the window prompt and then again when the user plugged in their values. A while loop was used here to make sure the returned values stayed within the acceptible range and if they were not then a new message would alert the user to try again with an acceptible value. 
 
 ![function promptLength at work](./images/FirstPrompt.png)
 
 
-To connect the value the user input into the prompt to the password to be generated later on, I created a variable to refer back to the inputted response.
+To connect the value the user input into the prompt to the password to be generated later on, I created a variable to refer back to the returned value.
 
 ![variable characterLength returns value of promptLength](./images/promptlengthischaracterlength.png)
 
@@ -36,7 +36,7 @@ To create the arrays I input them all into a related array variable that would b
 
 ## Generating the Password
 
-To combine the inputted responses provided by the user needed to generate the new password, I created the function generatePassword with the parameters of the character length and the selected answer of True or False for the options of lowercase, uppercase, numeric, and special character values. This function would then be called back as the finished password once the options were all selected.
+To combine the returned values provided by the user needed to generate the new password, I created the function generatePassword with the parameters of the character length and the selected answer of True or False for the options of lowercase, uppercase, numeric, and special character values. This function would then be called back as the finished password once the options were all selected.
 
 ![generatePassword function with parameters](./images/generatepasswordfunction.png)
 
